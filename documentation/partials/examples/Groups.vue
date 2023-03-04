@@ -1,22 +1,9 @@
-<template lang="pug">
-div
-  label.typo__label Groups
-  multiselect(
-    v-model="value",
-    :options="options",
-    :multiple="true",
-    group-values="libs",
-    group-label="language",
-    :group-select="true",
-    placeholder="Type to search",
-    track-by="name",
-    label="name",
-  )
-    span(slot="noResult").
-      Oops! No elements found. Consider changing the search query.
-  pre.language-json
-    code.
-      {{ value  }}
+<template>
+  <div>
+    <label class="typo__label">Groups</label>
+    <multiselect v-model="value" :options="options" :multiple="true" group-values="libs" group-label="language" :group-select="true" placeholder="Type to search" track-by="name" label="name"><span slot="noResult">Oops! No elements found. Consider changing the search query.</span></multiselect>
+    <pre class="language-json"><code>{{ value  }}</code></pre>
+  </div>
 </template>
 
 <script>
@@ -56,6 +43,3 @@ export default {
   }
 }
 </script>
-
-<style lang="css">
-</style>

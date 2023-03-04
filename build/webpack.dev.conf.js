@@ -1,10 +1,10 @@
-var utils = require('./utils')
+var sass = require('sass')
 var webpack = require('webpack')
 var config = require('../config')
 const { merge } = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.conf')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
-var FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
+var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 // add hot-reload related code to entry chunks
 Object.keys(baseWebpackConfig.entry).forEach(function (name) {
@@ -12,15 +12,33 @@ Object.keys(baseWebpackConfig.entry).forEach(function (name) {
 })
 
 module.exports = merge(baseWebpackConfig, {
+  mode: 'development',
   module: {
-    rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap })
+    rules: [
+      {
+        test: /\.scss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'resolve-url-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              implementation: sass,
+              sourceMap: true,
+            },
+          },
+        ],
+      },
+    ]
   },
   // cheap-module-eval-source-map is faster for development
-  devtool: '#cheap-module-eval-source-map',
+  devtool: 'eval-cheap-module-source-map',
   plugins: [
     new webpack.DefinePlugin({
       'process.env': config.dev.env
     }),
+    new MiniCssExtractPlugin(),
     // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
@@ -29,7 +47,6 @@ module.exports = merge(baseWebpackConfig, {
       filename: 'index.html',
       template: './documentation/index.pug',
       inject: true
-    }),
-    new FriendlyErrorsPlugin()
+    })
   ]
 })

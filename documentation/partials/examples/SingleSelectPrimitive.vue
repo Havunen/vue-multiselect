@@ -1,17 +1,9 @@
-<template lang="pug">
-div
-  label.typo__label Single select
-  multiselect(
-    v-model="value",
-    :options="options",
-    :searchable="false",
-    :close-on-select="false",
-    :show-labels="false"
-    placeholder="Pick a value"
-  )
-  pre.language-json
-    code.
-      {{ value  }}
+<template>
+  <div>
+    <label class="typo__label">Single select</label>
+    <multiselect v-model="value" :options="options" :searchable="false" :close-on-select="false" :show-labels="false" placeholder="Pick a value"></multiselect>
+    <pre class="language-json"><code>{{ value  }}</code></pre>
+  </div>
 </template>
 
 <script>

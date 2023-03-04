@@ -1,16 +1,31 @@
-// This is the webpack config used for unit tests.
-
-var utils = require('./utils')
 var webpack = require('webpack')
-const { merge } = require('webpack-merge')
+var { merge } = require('webpack-merge')
 var baseConfig = require('./webpack.base.conf')
+var MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const sass = require('sass')
 
 var webpackConfig = merge(baseConfig, {
   // use inline sourcemap for karma-sourcemap-loader
   module: {
-    rules: utils.styleLoaders()
+    rules: [
+      {
+        test: /\.scss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'resolve-url-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              implementation: sass,
+              sourceMap: true,
+            },
+          },
+        ],
+      },
+    ]
   },
-  devtool: '#inline-source-map',
+  devtool: 'inline-source-map',
   plugins: [
     new webpack.DefinePlugin({
       'process.env': require('../config/test.env')

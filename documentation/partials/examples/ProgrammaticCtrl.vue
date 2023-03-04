@@ -1,25 +1,11 @@
-<template lang="pug">
-	div
-		<button @click="toggle" class="button button-small">Toggle</button>
-		<button @click="open" class="button button-small">Open</button>
-		<button @click="close" class="button button-small">Close</button>
-		<pre>Multiselect Open: {{ isOpen }}</pre>
-
-		label.typo__label Controlling multiselect programmatically
-		multiselect(
-			ref="multiselect"
-			placeholder="Pick at least one",
-			:value="value",
-			:options="options",
-			:multiple="true",
-			:searchable="true",
-			:allow-empty="false",
-			:hide-selected="true",
-			:max-height="150",
-			:max="3",
-			@open="isOpen = true"
-			@close="isOpen = false"
-		)
+<template>
+  <div><button @click="toggle" class="button button-small">Toggle</button>
+    <button @click="open" class="button button-small">Open</button>
+    <button @click="close" class="button button-small">Close</button>
+    <pre>Multiselect Open: {{ isOpen }}</pre>
+    <label class="typo__label">Controlling multiselect programmatically</label>
+    <multiselect ref="multiselect" placeholder="Pick at least one" :value="value" :options="options" :multiple="true" :searchable="true" :allow-empty="false" :hide-selected="true" :max-height="150" :max="3" @open="isOpen = true" @close="isOpen = false"></multiselect>
+  </div>
 </template>
 
 <script>
@@ -39,7 +25,7 @@ export default {
 	methods: {
 		toggle () {
 			this.$refs.multiselect.$el.focus()
-						
+
 			setTimeout(() => {
 				this.$refs.multiselect.$refs.search.blur()
 			}, 1000)
@@ -54,7 +40,7 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style>
 	.form__label {
 		margin-top: 5px !important;
 	}

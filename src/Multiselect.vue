@@ -376,7 +376,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 fieldset[disabled] .multiselect {
   pointer-events: none;
 }

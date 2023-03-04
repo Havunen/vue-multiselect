@@ -1,28 +1,14 @@
-<template lang="pug">
-div
-  label.typo__label Custom option template
-  multiselect(
-    v-model="value",
-    placeholder="Fav No Man’s Sky path",
-    label="title",
-    track-by="title",
-    :options="options",
-    :option-height="104",
-    :custom-label="customLabel",
-    :show-labels="false"
-  )
-    template(slot="singleLabel", slot-scope="props")
-      img.option__image(:src="props.option.img", alt="No Man’s Sky")
-      span.option__desc
-        span.option__title {{ props.option.title }}
-    template(slot="option", slot-scope="props")
-      img.option__image(:src="props.option.img", alt="No Man’s Sky")
-      .option__desc
-        span.option__title {{ props.option.title }}
-        span.option__small {{ props.option.desc }}
-  pre.language-json
-    code.
-      {{ value  }}
+<template>
+  <div>
+    <label class="typo__label">Custom option template</label>
+    <multiselect v-model="value" placeholder="Fav No Man’s Sky path" label="title" track-by="title" :options="options" :option-height="104" :custom-label="customLabel" :show-labels="false">
+      <template slot="singleLabel" slot-scope="props"><img class="option__image" :src="props.option.img" alt="No Man’s Sky"/><span class="option__desc"><span class="option__title">{{ props.option.title }}</span></span></template>
+      <template slot="option" slot-scope="props"><img class="option__image" :src="props.option.img" alt="No Man’s Sky"/>
+        <div class="option__desc"><span class="option__title">{{ props.option.title }}</span><span class="option__small">{{ props.option.desc }}</span></div>
+      </template>
+    </multiselect>
+    <pre class="language-json"><code>{{ value  }}</code></pre>
+  </div>
 </template>
 
 <script>

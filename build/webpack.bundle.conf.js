@@ -1,10 +1,11 @@
 const webpack = require('webpack')
 const base = require('./webpack.base.conf')
 const config = require('../config')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const utils = require('./utils')
+const TerserPlugin = require("terser-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const sass = require('sass')
 const { merge } = require('webpack-merge')
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const CssMinimizierPlugin = require('css-minimizer-webpack-plugin')
 
 const env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
@@ -23,25 +24,34 @@ const webpackConfig = merge(base, {
     libraryTarget: 'umd'
   },
   module: {
-    rules: utils.styleLoaders({
-      sourceMap: config.bundle.productionSourceMap,
-      extract: true
-    })
+    rules: [
+      {
+        test: /\.scss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'resolve-url-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              implementation: sass,
+              sourceMap: true,
+            },
+          },
+        ],
+      },
+    ]
   },
-  devtool: config.bundle.productionSourceMap ? '#source-map' : false,
+  devtool: config.bundle.productionSourceMap ? 'source-map' : false,
   plugins: [
     new webpack.DefinePlugin({
       'process.env': env
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: { warnings: false }
-    }),
-    new ExtractTextPlugin({
+    new TerserPlugin(),
+    new MiniCssExtractPlugin({
       filename: 'vue-multiselect.min.css'
     }),
-    new OptimizeCssAssetsPlugin({
-      cssProcessor: require('cssnano')
-    })
+    new CssMinimizierPlugin()
   ]
 })
 

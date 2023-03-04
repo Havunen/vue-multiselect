@@ -1,17 +1,29 @@
-var utils = require('./utils')
-var config = require('../config')
-var isProduction = process.env.NODE_ENV === 'production'
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const sass = require('sass')
 
 module.exports = {
-  loaders: utils.cssLoaders({
-    sourceMap: isProduction
-      ? config.docs.productionSourceMap
-      : config.dev.cssSourceMap,
-    extract: isProduction
-  }),
+  loaders: {
+    rules: [
+      {
+        test: /\.scss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'resolve-url-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              implementation: sass,
+              sourceMap: true,
+            },
+          },
+        ],
+      },
+    ]
+  },
   postcss: [
     require('autoprefixer')({
-      browsers: ['last 2 versions']
+      overrideBrowserslist: ['last 2 versions']
     })
   ]
 }

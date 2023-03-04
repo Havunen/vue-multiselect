@@ -1,27 +1,9 @@
-<template lang="pug">
-  div(
-    :class="{ 'invalid': isInvalid }"
-  )
-    label.typo__label Customized multiselect
-    multiselect(
-      placeholder="Pick at least one",
-      select-label="Enter doesn’t work here!",
-      :value="value",
-      :options="options",
-      :multiple="true",
-      :searchable="true",
-      :allow-empty="false",
-      :prevent-autofocus="true",
-      :hide-selected="true",
-      :max-height="150",
-      :max="3",
-      :disabled="isDisabled",
-      :block-keys="['Tab', 'Enter']",
-      @input="onChange",
-      @close="onTouch",
-      @select="onSelect"
-    )
-    label.typo__label.form__label(v-show="isInvalid") Must have at least one value
+<template>
+  <div :class="{ 'invalid': isInvalid }">
+    <label class="typo__label">Customized multiselect</label>
+    <multiselect placeholder="Pick at least one" select-label="Enter doesn’t work here!" :value="value" :options="options" :multiple="true" :searchable="true" :allow-empty="false" :prevent-autofocus="true" :hide-selected="true" :max-height="150" :max="3" :disabled="isDisabled" :block-keys="['Tab', 'Enter']" @input="onChange" @close="onTouch" @select="onSelect"></multiselect>
+    <label class="typo__label form__label" v-show="isInvalid">Must have at least one value</label>
+  </div>
 </template>
 
 <script>
@@ -59,7 +41,7 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="scss">
   .form__label {
     margin-top: 5px !important;
   }

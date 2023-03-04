@@ -1,18 +1,11 @@
-// https://github.com/shelljs/shelljs
-require('./check-versions')()
-
 process.env.NODE_ENV = 'production'
 
-var ora = require('ora')
 var path = require('path')
 var chalk = require('chalk')
 var shell = require('shelljs')
 var webpack = require('webpack')
 var config = require('../config')
 var webpackConfig = require('./webpack.docs.conf')
-
-var spinner = ora('building docs...')
-spinner.start()
 
 var assetsPath = path.join(config.docs.assetsRoot, config.docs.assetsSubDirectory)
 shell.rm('-rf', assetsPath)
@@ -22,7 +15,6 @@ shell.cp('-R', 'static/*', assetsPath)
 shell.config.silent = false
 
 webpack(webpackConfig, function (err, stats) {
-  spinner.stop()
   if (err) throw err
   process.stdout.write(stats.toString({
     colors: true,

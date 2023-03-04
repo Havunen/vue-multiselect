@@ -1,4 +1,5 @@
 module.exports = {
+  testEnvironment: "jsdom",
   testMatch: ['**/?(*.)(spec).js?(x)'],
   moduleFileExtensions: [
     'js',
@@ -7,8 +8,8 @@ module.exports = {
     'vue'
   ],
   transform: {
-    '^.+\\.vue$': 'vue-jest',
-    '^.+\\.jsx?$': 'babel-jest'
+    '^.+\\.vue$': '<rootDir>/node_modules/@vue/vue2-jest',
+    '^.+\\.js$': 'babel-jest'
   },
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1'

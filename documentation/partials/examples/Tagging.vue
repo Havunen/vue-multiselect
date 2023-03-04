@@ -1,20 +1,9 @@
-<template lang="pug">
-div
-  label.typo__label Tagging
-  multiselect(
-    v-model="value",
-    tag-placeholder="Add this as new tag",
-    placeholder="Search or add a tag",
-    label="name",
-    track-by="code",
-    :options="options",
-    :multiple="true",
-    :taggable="true",
-    @tag="addTag"
-  )
-  pre.language-json
-    code.
-      {{ value  }}
+<template>
+  <div>
+    <label class="typo__label">Tagging</label>
+    <multiselect v-model="value" tag-placeholder="Add this as new tag" placeholder="Search or add a tag" label="name" track-by="code" :options="options" :multiple="true" :taggable="true" @tag="addTag"></multiselect>
+    <pre class="language-json"><code>{{ value  }}</code></pre>
+  </div>
 </template>
 
 <script>
@@ -48,6 +37,3 @@ export default {
   }
 }
 </script>
-
-<style lang="css">
-</style>

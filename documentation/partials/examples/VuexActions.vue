@@ -1,13 +1,8 @@
-<template lang="pug">
-div
-  label.typo__label Vuex example.
-  multiselect(
-    placeholder="Pick action",
-    :value="value",
-    :options="options",
-    :searchable="false",
-    @input="updateValueAction",
-  )
+<template>
+  <div>
+    <label class="typo__label">Vuex example.</label>
+    <multiselect placeholder="Pick action" :value="value" :options="options" :searchable="false" @input="updateValueAction"></multiselect>
+  </div>
 </template>
 
 <script>

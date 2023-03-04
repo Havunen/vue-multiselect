@@ -1,13 +1,8 @@
-<template lang="pug">
-div
-  label.typo__label Open console to see logs.
-  multiselect(
-    placeholder="Pick action",
-    :options="actions",
-    :searchable="false",
-    :reset-after="true",
-    @select="dispatchAction"
-  )
+<template>
+  <div>
+    <label class="typo__label">Open console to see logs.</label>
+    <multiselect placeholder="Pick action" :options="actions" :searchable="false" :reset-after="true" @select="dispatchAction"></multiselect>
+  </div>
 </template>
 
 <script>

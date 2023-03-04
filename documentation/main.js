@@ -3,7 +3,6 @@ import * as examples from './partials/examples'
 import LangSwitcher from './LangSwitcher'
 import MultiselectExample from './MultiselectExample'
 import Multiselect from 'vue-multiselect'
-require('es6-promise').polyfill()
 
 import './docs.scss'
 

@@ -1,5 +1,11 @@
 # vue-multiselect ![Build Status](https://circleci.com/gh/shentao/vue-multiselect/tree/2.0.svg?style=shield&circle-token=5c931ff28fd12587610f835472becdd514d09cef)[![Codecov branch](https://img.shields.io/codecov/c/github/shentao/vue-multiselect/2.0.svg)](https://codecov.io/gh/shentao/vue-multiselect/branch/2.0)[![npm](https://img.shields.io/npm/v/vue-multiselect.svg)](https://www.npmjs.com/package/vue-multiselect)
-Probably the most complete *selecting* solution for Vue.js 2.0, without jQuery.
+This is fork of an awesome https://github.com/shentao/vue-multiselect
+
+Changes to original version include:
+
+- Dropped support for IE
+- Built using modern build tools
+- Removed built-in promise polyfill
 
 ### Vue 3.0 Support
 For Vue 3.0 compatible version see [`next`](https://github.com/shentao/vue-multiselect/tree/next) branch.
