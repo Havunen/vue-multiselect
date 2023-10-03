@@ -6,9 +6,8 @@ module.exports = {
     'plugin:vue/essential'
   ],
   parserOptions: {
-    'ecmaVersion': 2017,
+    'ecmaVersion': 2022,
     'sourceType': 'module',
-    'parser': 'babel-eslint',
   },
   // required to lint *.vue files
   plugins: ['html'],

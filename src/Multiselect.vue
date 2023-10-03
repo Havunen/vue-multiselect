@@ -24,7 +24,7 @@
           :is-open="isOpen"
         >
           <div class="multiselect__tags-wrap" v-show="visibleValues.length > 0">
-            <template v-for="(option, index) of visibleValues" @mousedown.prevent>
+            <template v-for="(option, index) of visibleValues">
               <slot name="tag" :option="option" :search="search" :remove="removeElement">
                 <span class="multiselect__tag" :key="index">
                   <span v-text="getOptionLabel(option)"></span>
@@ -155,8 +155,8 @@
 </template>
 
 <script>
-import multiselectMixin from './multiselectMixin'
-import pointerMixin from './pointerMixin'
+import multiselectMixin from './multiselectMixin.js'
+import pointerMixin from './pointerMixin.js'
 
 export default {
   name: 'vue-multiselect',

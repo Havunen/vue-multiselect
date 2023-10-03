@@ -1,10 +1,12 @@
-var webpack = require('webpack')
-var { merge } = require('webpack-merge')
-var baseConfig = require('./webpack.base.conf')
-var MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const sass = require('sass')
+import webpack from 'webpack'
+import { merge } from 'webpack-merge'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import sass from 'sass'
 
-var webpackConfig = merge(baseConfig, {
+import config from '../config/test.env.js'
+
+const baseConfig = require('./webpack.base.conf')
+const webpackConfig = merge(baseConfig, {
   // use inline sourcemap for karma-sourcemap-loader
   module: {
     rules: [
@@ -18,17 +20,17 @@ var webpackConfig = merge(baseConfig, {
             loader: 'sass-loader',
             options: {
               implementation: sass,
-              sourceMap: true,
-            },
-          },
-        ],
-      },
+              sourceMap: true
+            }
+          }
+        ]
+      }
     ]
   },
   devtool: 'inline-source-map',
   plugins: [
     new webpack.DefinePlugin({
-      'process.env': require('../config/test.env')
+      'process.env': config
     })
   ]
 })
@@ -36,4 +38,4 @@ var webpackConfig = merge(baseConfig, {
 // no need for app entry during tests
 delete webpackConfig.entry
 
-module.exports = webpackConfig
+export default webpackConfig

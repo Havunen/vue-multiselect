@@ -6,7 +6,7 @@ test/unit/coverage
 test/e2e/reports
 .babelrc
 .editorconfig
-.eslintrc.js
+.eslintrc.cjs
 .gitignore
 .tern-project
 docs/

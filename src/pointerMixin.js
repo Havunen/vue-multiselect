@@ -58,11 +58,13 @@ export default {
         return option[this.groupLabel] === selectedGroup.$groupLabel
       })
 
-      return group && !this.wholeGroupDisabled(group) ? [
-        'multiselect__option--group',
-        { 'multiselect__option--highlight': index === this.pointer && this.showPointer },
-        { 'multiselect__option--group-selected': this.wholeGroupSelected(group) }
-      ] : 'multiselect__option--disabled'
+      return group && !this.wholeGroupDisabled(group)
+        ? [
+            'multiselect__option--group',
+            { 'multiselect__option--highlight': index === this.pointer && this.showPointer },
+            { 'multiselect__option--group-selected': this.wholeGroupSelected(group) }
+          ]
+        : 'multiselect__option--disabled'
     },
     addPointerElement ({ key } = 'Enter') {
       /* istanbul ignore else */

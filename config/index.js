@@ -1,9 +1,14 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
-var path = require('path')
+import path from 'path';
+import dev from './dev.env.js'
+import prod from './prod.env.js'
+import { fileURLToPath } from 'url';
 
-module.exports = {
+const __dirname = fileURLToPath(import.meta.url)
+
+export default {
   dev: {
-    env: require('./dev.env'),
+    env: dev,
     port: 8080,
     autoOpenBrowser: true,
     assetsSubDirectory: 'static',
@@ -17,7 +22,7 @@ module.exports = {
     cssSourceMap: false
   },
   bundle: {
-    env: require('./prod.env'),
+    env: prod,
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsPublicPath: '/',
     assetsSubDirectory: '/',
@@ -27,7 +32,7 @@ module.exports = {
     bundleAnalyzerReport: process.env.npm_config_report
   },
   docs: {
-    env: require('./prod.env'),
+    env: prod,
     index: path.resolve(__dirname, '../docs/index.html'),
     assetsRoot: path.resolve(__dirname, '../docs'),
     assetsPublicPath: '',
@@ -37,4 +42,4 @@ module.exports = {
     productionGzipExtensions: ['js', 'css'],
     bundleAnalyzerReport: process.env.npm_config_report
   }
-}
+};

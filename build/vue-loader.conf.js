@@ -1,7 +1,8 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const sass = require('sass')
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import sass from 'sass'
+import autoprefixer from 'autoprefixer'
 
-module.exports = {
+export default {
   loaders: {
     rules: [
       {
@@ -14,15 +15,15 @@ module.exports = {
             loader: 'sass-loader',
             options: {
               implementation: sass,
-              sourceMap: true,
-            },
-          },
-        ],
-      },
+              sourceMap: true
+            }
+          }
+        ]
+      }
     ]
   },
   postcss: [
-    require('autoprefixer')({
+    autoprefixer({
       overrideBrowserslist: ['last 2 versions']
     })
   ]

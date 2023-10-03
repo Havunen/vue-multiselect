@@ -45,16 +45,16 @@ function filterGroups (search, label, values, groupLabel, customLabel) {
     groups.map(group => {
       /* istanbul ignore else */
       if (!group[values]) {
-        console.warn(`Options passed to vue-multiselect do not contain groups, despite the config.`)
+        console.warn('Options passed to vue-multiselect do not contain groups, despite the config.')
         return []
       }
       const groupOptions = filterOptions(group[values], search, label, customLabel)
 
       return groupOptions.length
         ? {
-          [groupLabel]: group[groupLabel],
-          [values]: groupOptions
-        }
+            [groupLabel]: group[groupLabel],
+            [values]: groupOptions
+          }
         : []
     })
 }
@@ -493,7 +493,7 @@ export default {
       /* istanbul ignore else */
       if (option.$isLabel) return option.$groupLabel
 
-      let label = this.customLabel(option, this.label)
+      const label = this.customLabel(option, this.label)
       /* istanbul ignore else */
       if (isEmpty(label)) return ''
       return label
@@ -569,7 +569,7 @@ export default {
 
         this.$emit('input', newValue, this.id)
       } else {
-        let optionsToAdd = group[this.groupValues].filter(
+        const optionsToAdd = group[this.groupValues].filter(
           option => !(this.isOptionDisabled(option) || this.isSelected(option))
         )
 

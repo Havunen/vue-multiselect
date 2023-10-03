@@ -1,18 +1,20 @@
-const webpack = require('webpack')
-const base = require('./webpack.base.conf')
-const config = require('../config')
-const TerserPlugin = require("terser-webpack-plugin");
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const sass = require('sass')
-const { merge } = require('webpack-merge')
-const CssMinimizierPlugin = require('css-minimizer-webpack-plugin')
+import webpack from 'webpack'
+import config from '../config/index.js'
+import TerserPlugin from 'terser-webpack-plugin'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import sass from 'sass'
+import { merge } from 'webpack-merge'
+import CssMinimizierPlugin from 'css-minimizer-webpack-plugin'
+import base from './webpack.base.conf.js'
+
+import testConfig from '../config/test.env.js'
 
 const env = process.env.NODE_ENV === 'testing'
-  ? require('../config/test.env')
+  ? testConfig
   : config.bundle.env
 
 base.entry = {
-  'VueMultiselect': './src/index.js'
+  VueMultiselect: './src/index.js'
 }
 
 const webpackConfig = merge(base, {
@@ -35,11 +37,11 @@ const webpackConfig = merge(base, {
             loader: 'sass-loader',
             options: {
               implementation: sass,
-              sourceMap: true,
-            },
-          },
-        ],
-      },
+              sourceMap: true
+            }
+          }
+        ]
+      }
     ]
   },
   devtool: config.bundle.productionSourceMap ? 'source-map' : false,
@@ -55,4 +57,4 @@ const webpackConfig = merge(base, {
   ]
 })
 
-module.exports = webpackConfig
+export default webpackConfig

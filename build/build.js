@@ -1,13 +1,12 @@
+import path from 'path'
+import chalk from 'chalk'
+import shell from 'shelljs'
+import webpack from 'webpack'
+import config from '../config/index.js'
+import webpackConfig from './webpack.docs.conf.js'
+
 process.env.NODE_ENV = 'production'
-
-var path = require('path')
-var chalk = require('chalk')
-var shell = require('shelljs')
-var webpack = require('webpack')
-var config = require('../config')
-var webpackConfig = require('./webpack.docs.conf')
-
-var assetsPath = path.join(config.docs.assetsRoot, config.docs.assetsSubDirectory)
+const assetsPath = path.join(config.docs.assetsRoot, config.docs.assetsSubDirectory)
 shell.rm('-rf', assetsPath)
 shell.mkdir('-p', assetsPath)
 shell.config.silent = true

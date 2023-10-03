@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   testEnvironment: "jsdom",
   testMatch: ['**/?(*.)(spec).js?(x)'],
   moduleFileExtensions: [
@@ -24,4 +24,4 @@ module.exports = {
     '!documentation/**',
     '!docs/**'
   ]
-}
+};

@@ -1,19 +1,24 @@
-var path = require('path')
-var utils = require('./utils')
-var webpack = require('webpack')
-var config = require('../config')
-const { merge } = require('webpack-merge')
-var baseWebpackConfig = require('./webpack.base.conf')
-var HtmlWebpackPlugin = require('html-webpack-plugin')
-var MiniCssExtractPlugin = require('mini-css-extract-plugin')
-var CopyWebpackPlugin = require('copy-webpack-plugin')
-var sass = require('sass')
+import path from 'path'
+import utils from './utils'
+import webpack from 'webpack'
+import config from '../config/index.js'
+import { merge } from 'webpack-merge'
 
-var env = process.env.NODE_ENV === 'testing'
-  ? require('../config/test.env')
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import CopyWebpackPlugin from 'copy-webpack-plugin'
+import sass from 'sass'
+import baseWebpackConfig from './webpack.base.conf'
+import testEnv from '../config/test.env.js'
+import { fileURLToPath } from 'url'
+
+const __dirname = fileURLToPath(import.meta.url)
+
+const env = process.env.NODE_ENV === 'testing'
+  ? testEnv
   : config.docs.env
 
-var webpackConfig = merge(baseWebpackConfig, {
+const webpackConfig = merge(baseWebpackConfig, {
   mode: 'production',
   module: {
     rules: [
@@ -27,11 +32,11 @@ var webpackConfig = merge(baseWebpackConfig, {
             loader: 'sass-loader',
             options: {
               implementation: sass,
-              sourceMap: true,
-            },
-          },
-        ],
-      },
+              sourceMap: true
+            }
+          }
+        ]
+      }
     ]
   },
   devtool: config.docs.productionSourceMap ? 'source-map' : false,
@@ -102,7 +107,7 @@ var webpackConfig = merge(baseWebpackConfig, {
 })
 
 if (config.docs.productionGzip) {
-  var CompressionWebpackPlugin = require('compression-webpack-plugin')
+  const CompressionWebpackPlugin = require('compression-webpack-plugin')
 
   webpackConfig.plugins.push(
     new CompressionWebpackPlugin({
@@ -120,8 +125,8 @@ if (config.docs.productionGzip) {
 }
 
 if (config.docs.bundleAnalyzerReport) {
-  var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+  const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
   webpackConfig.plugins.push(new BundleAnalyzerPlugin())
 }
 
-module.exports = webpackConfig
+export default webpackConfig

@@ -1,15 +1,15 @@
-var ESLintPlugin = require('eslint-webpack-plugin');
-var path = require('path')
-var config = require('../config')
-var utils = require('./utils')
-var vueLoaderConfig = require('./vue-loader.conf')
-const { VueLoaderPlugin } = require('vue-loader')
+import path from 'path'
+import config from '../config/index.js'
+import { VueLoaderPlugin } from 'vue-loader'
+import { fileURLToPath } from 'url'
+
+const __dirname = fileURLToPath(import.meta.url)
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
-module.exports = {
+export default {
   entry: {
     app: './documentation/main.js'
   },
@@ -29,12 +29,12 @@ module.exports = {
       resolve('node_modules')
     ],
     alias: {
-      'vue$': 'vue/dist/vue',
+      vue$: 'vue/dist/vue',
       'vue-multiselect': path.resolve(__dirname, '../src/Multiselect'), // for consistent docs
-      'src': path.resolve(__dirname, '../src'),
-      'assets': path.resolve(__dirname, '../documentation/assets'),
-      'examples': path.resolve(__dirname, '../documentation/partials/examples'),
-      'components': path.resolve(__dirname, '../src/components')
+      src: path.resolve(__dirname, '../src'),
+      assets: path.resolve(__dirname, '../documentation/assets'),
+      examples: path.resolve(__dirname, '../documentation/partials/examples'),
+      components: path.resolve(__dirname, '../src/components')
     }
   },
   module: {
@@ -45,15 +45,15 @@ module.exports = {
         options: {
           preserveWhitespace: false,
           loaders: {
-            scss: 'vue-style-loader!css-loader!sass-loader', // <style lang="scss">
-          },
-        },
+            scss: 'vue-style-loader!css-loader!sass-loader' // <style lang="scss">
+          }
+        }
       },
       {
         test: /\.js$/,
         loader: 'babel-loader',
         include: [resolve('src'), resolve('documentation'), resolve('test')]
-      },
+      }
     ]
   },
   plugins: [

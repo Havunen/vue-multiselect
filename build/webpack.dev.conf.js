@@ -1,17 +1,17 @@
-var sass = require('sass')
-var webpack = require('webpack')
-var config = require('../config')
-const { merge } = require('webpack-merge')
-var baseWebpackConfig = require('./webpack.base.conf')
-var HtmlWebpackPlugin = require('html-webpack-plugin')
-var MiniCssExtractPlugin = require('mini-css-extract-plugin');
+import sass from 'sass'
+import webpack from 'webpack'
+import config from '../config/index.js'
+import { merge } from 'webpack-merge'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import baseWebpackConfig from './webpack.base.conf'
 
 // add hot-reload related code to entry chunks
 Object.keys(baseWebpackConfig.entry).forEach(function (name) {
   baseWebpackConfig.entry[name] = ['./build/dev-client'].concat(baseWebpackConfig.entry[name])
 })
 
-module.exports = merge(baseWebpackConfig, {
+export default merge(baseWebpackConfig, {
   mode: 'development',
   module: {
     rules: [
@@ -25,11 +25,11 @@ module.exports = merge(baseWebpackConfig, {
             loader: 'sass-loader',
             options: {
               implementation: sass,
-              sourceMap: true,
-            },
-          },
-        ],
-      },
+              sourceMap: true
+            }
+          }
+        ]
+      }
     ]
   },
   // cheap-module-eval-source-map is faster for development

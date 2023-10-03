@@ -1,8 +1,8 @@
-var path = require('path')
-var config = require('../config')
+import path from 'path'
+import config from '../config/index.js'
 
-exports.assetsPath = function (_path) {
-  var assetsSubDirectory = process.env.NODE_ENV === 'production'
+export function assetsPath (_path) {
+  const assetsSubDirectory = process.env.NODE_ENV === 'production'
     ? config.docs.assetsSubDirectory
     : config.dev.assetsSubDirectory
   return path.posix.join(assetsSubDirectory, _path)

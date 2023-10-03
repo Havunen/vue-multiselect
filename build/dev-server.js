@@ -1,39 +1,40 @@
-var config = require('../config')
+import config from '../config/index.js'
+import open from 'open'
+import path from 'path'
+import express from 'express'
+import webpack from 'webpack'
+import proxyMiddleware from 'http-proxy-middleware'
+import webpackDevMiddleware from 'webpack-dev-middleware'
+import testConf from './webpack.test.conf.js'
+import devConf from './webpack.dev.conf.js'
+
 if (!process.env.NODE_ENV) {
   process.env.NODE_ENV = JSON.parse(config.dev.env.NODE_ENV)
 }
-
-var open = require('open')
-var path = require('path')
-var express = require('express')
-var webpack = require('webpack')
-var proxyMiddleware = require('http-proxy-middleware')
-var webpackConfig = process.env.NODE_ENV === 'testing'
-  ? require('./webpack.prod.conf')
-  : require('./webpack.dev.conf')
+const webpackConfig = process.env.NODE_ENV === 'testing' ? testConf : devConf
 
 // default port where dev server listens for incoming traffic
-var port = process.env.PORT || config.dev.port
+const port = process.env.PORT || config.dev.port
 // automatically open browser, if not set will be false
-var autoOpenBrowser = !!config.dev.autoOpenBrowser
+const autoOpenBrowser = !!config.dev.autoOpenBrowser
 // Define HTTP proxies to your custom API backend
 // https://github.com/chimurai/http-proxy-middleware
-var proxyTable = config.dev.proxyTable
+const proxyTable = config.dev.proxyTable
 
-var app = express()
-var compiler = webpack(webpackConfig)
+const app = express()
+const compiler = webpack(webpackConfig)
 
-var devMiddleware = require('webpack-dev-middleware')(compiler, {
+const devMiddleware = webpackDevMiddleware(compiler, {
   publicPath: webpackConfig.output.publicPath
 })
 
-var hotMiddleware = require('webpack-hot-middleware')(compiler, {
+const hotMiddleware = webpack_hot_middleware(compiler, {
   log: () => {}
 })
 
 // proxy api requests
 Object.keys(proxyTable).forEach(function (context) {
-  var options = proxyTable[context]
+  let options = proxyTable[context]
   if (typeof options === 'string') {
     options = { target: options }
   }
@@ -48,16 +49,16 @@ app.use(devMiddleware)
 app.use(hotMiddleware)
 
 // serve pure static assets
-var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
+const staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
 app.use(staticPath, express.static('./static'))
 
-var uri = 'http://localhost:' + port
+const uri = 'http://localhost:' + port
 
 devMiddleware.waitUntilValid(function () {
   console.log('> Listening at ' + uri + '\n')
 })
 
-module.exports = app.listen(port, function (err) {
+export default app.listen(port, function (err) {
   if (err) {
     console.log(err)
     return
