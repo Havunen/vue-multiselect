@@ -1,7 +1,7 @@
 import webpack from 'webpack'
 import { merge } from 'webpack-merge'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
-import sass from 'sass'
+import * as sass from 'sass'
 
 import config from '../config/test.env.js'
 

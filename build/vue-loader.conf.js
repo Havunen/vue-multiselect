@@ -1,5 +1,5 @@
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
-import sass from 'sass'
+import * as sass from 'sass'
 import autoprefixer from 'autoprefixer'
 
 export default {

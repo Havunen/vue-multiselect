@@ -21,6 +21,12 @@ export default {
       ? config.docs.assetsPublicPath
       : config.dev.assetsPublicPath
   },
+  experiments: {
+    outputModule: true
+  },
+  optimization: {
+    minimize: false
+  },
   resolve: {
     extensions: ['.js', '.vue'],
     modules: [

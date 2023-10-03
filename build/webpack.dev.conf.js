@@ -1,4 +1,4 @@
-import sass from 'sass'
+import * as sass from 'sass'
 import webpack from 'webpack'
 import config from '../config/index.js'
 import { merge } from 'webpack-merge'

@@ -2,7 +2,7 @@ import webpack from 'webpack'
 import config from '../config/index.js'
 import TerserPlugin from 'terser-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
-import sass from 'sass'
+import * as sass from 'sass'
 import { merge } from 'webpack-merge'
 import CssMinimizierPlugin from 'css-minimizer-webpack-plugin'
 import base from './webpack.base.conf.js'
@@ -21,9 +21,11 @@ const webpackConfig = merge(base, {
   output: {
     path: config.bundle.assetsRoot,
     publicPath: config.bundle.assetsPublicPath,
-    filename: 'vue-multiselect.min.js',
-    library: 'VueMultiselect',
-    libraryTarget: 'umd'
+    filename: 'vue-multiselect.esm.mjs',
+    module: true,
+    library: {
+      type: 'module'
+    }
   },
   module: {
     rules: [
@@ -49,7 +51,6 @@ const webpackConfig = merge(base, {
     new webpack.DefinePlugin({
       'process.env': env
     }),
-    new TerserPlugin(),
     new MiniCssExtractPlugin({
       filename: 'vue-multiselect.min.css'
     }),
