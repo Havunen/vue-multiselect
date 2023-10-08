@@ -58,7 +58,17 @@ export default {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [resolve('src'), resolve('documentation'), resolve('test')]
+        include: [resolve('src'), resolve('documentation'), resolve('test')],
+        options: {
+          presets: [
+            ['@babel/preset-env', {
+              modules: false,
+              targets: {
+                browsers: ['last 2 chrome version', 'last 2 firefox version', 'last 2 safari version']
+              }
+            }]
+          ]
+        }
       }
     ]
   },

@@ -25,7 +25,7 @@ var __webpack_exports__ = {};
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, {
   J: function() { return /* reexport */ Multiselect; },
-  ZP: function() { return /* binding */ src; },
+  ZP: function() { return /* reexport */ Multiselect; },
   n2: function() { return /* reexport */ multiselectMixin; },
   WM: function() { return /* reexport */ pointerMixin; }
 });
@@ -1897,8 +1897,6 @@ var component = normalizeComponent(
 
 
 
-
-/* harmony default export */ var src = (Multiselect);
 
 
 

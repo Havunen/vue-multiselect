@@ -24,7 +24,7 @@ export default {
   },
   postcss: [
     autoprefixer({
-      overrideBrowserslist: ['last 2 versions']
+      overrideBrowserslist: ['last 2 chrome version", "last 2 firefox version", "last 2 safari version']
     })
   ]
 }

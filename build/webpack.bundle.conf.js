@@ -27,6 +27,14 @@ const webpackConfig = merge(base, {
       type: 'module'
     }
   },
+  // output: {
+  //   path: config.bundle.assetsRoot,
+  //   publicPath: config.bundle.assetsPublicPath,
+  //   filename: 'vue-multiselect.cjs',
+  //   library: {
+  //     type: 'commonjs-module'
+  //   }
+  // },
   module: {
     rules: [
       {

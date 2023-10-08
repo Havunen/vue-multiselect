@@ -38,7 +38,7 @@ __webpack_require__.r(__webpack_exports__);
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, {
   Multiselect: function() { return /* reexport */ Multiselect; },
-  "default": function() { return /* binding */ src; },
+  "default": function() { return /* reexport */ Multiselect; },
   multiselectMixin: function() { return /* reexport */ multiselectMixin; },
   pointerMixin: function() { return /* reexport */ pointerMixin; }
 });
@@ -1911,10 +1911,8 @@ var component = normalizeComponent(
 
 
 
-/* harmony default export */ var src = (Multiselect);
 
 
-
-exports.VueMultiselect = __webpack_exports__;
+module.exports = __webpack_exports__;
 
 //# sourceMappingURL=vue-multiselect.cjs.map
